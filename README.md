@@ -2,7 +2,10 @@
 
 Canale pubblico degli adattatori HTTP per DodoTV Android e Tizen. La repository principale e le release complete delle app restano private. Nessun login GitHub richiesto ai dispositivi per leggere questo canale.
 
-Primo bundle firmato API 1: 1794219686. Compatibile con la nuova generazione del client aggiornamenti (Android 1.0.28 o successiva e Tizen 1.1.4 o successiva, dopo completamento delle rispettive build); le vecchie app non consultano questo canale. Il primo pacchetto contiene gli stessi quattro adattatori della build, per inizializzare il canale senza cambiare i flussi.
+Chiave ruotata il 9 novembre 2026 su richiesta del proprietario. Il pacchetto corrente richiede **Android 1.0.30 o successiva e Tizen 1.1.6 o successiva** con la nuova chiave pubblica incorporata. Le versioni precedenti rifiutano la nuova firma: aggiornare le app. La firma di installazione Android e gli identificativi delle app restano invariati.
+
+Bundle firmato API 1 corrente: **1794222477**. Contiene gli stessi quattro adattatori delle nuove app. Impronta SHA256 della chiave pubblica (SPKI DER): `476da7d1786668fac68df713fe8fffcf38871b5bb28531b8a84666915ef44b05`.
+
 
 - Indice: updates/stable.json, firma separata updates/stable.json.sig.
 - Pacchetti: bundles/ oppure asset delle release adapters-<sequenza>.
