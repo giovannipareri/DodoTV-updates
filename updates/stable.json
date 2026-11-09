@@ -1,0 +1,8 @@
+{
+  "schemaVersion": 1,
+  "product": "DodoTV",
+  "channel": "stable",
+  "enabled": false,
+  "apps": [],
+  "adapters": []
+}
