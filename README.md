@@ -1,15 +1,14 @@
-# DodoTV Updates
+# DodoTV updates
 
-Canale pubblico per gli aggiornamenti di DodoTV Android e Tizen. I file pubblicati qui saranno scaricabili senza account GitHub; il codice dell’app rimane nella repository privata.
+Canale pubblico degli adattatori HTTP per DodoTV Android e Tizen. La repository principale e le release complete delle app restano private. Nessun login GitHub richiesto ai dispositivi per leggere questo canale.
 
-## Stato attuale
+Primo bundle firmato API 1: 1794219686. Compatibile con la nuova generazione del client aggiornamenti (Android 1.0.28 o successiva e Tizen 1.1.4 o successiva, dopo completamento delle rispettive build); le vecchie app non consultano questo canale. Il primo pacchetto contiene gli stessi quattro adattatori della build, per inizializzare il canale senza cambiare i flussi.
 
-Repository predisposta. Nessun pacchetto o aggiornamento automatico degli adattatori è ancora disponibile in questo canale. L’app deve ancora integrare il controllo e la verifica delle patch.
+- Indice: updates/stable.json, firma separata updates/stable.json.sig.
+- Pacchetti: bundles/ oppure asset delle release adapters-<sequenza>.
+- Verifiche: firma RSA-SHA256 con chiave pubblica incorporata nell'app, hash SHA256, dimensioni, compatibilità e sequenza antireplay.
+- Attivazione: successivo avvio del servizio, dopo download verificato; rollback se l'inizializzazione del pacchetto fallisce.
 
-- `updates/stable.json`: indice iniziale disabilitato, senza pacchetti.
-- `PUBLISHING.md`: regole per pubblicare pacchetti e metadati verificabili.
-- Le release ospiteranno soltanto i file destinati alla distribuzione, checksum e firme pubbliche.
+La firma valida attesta la provenienza del pacchetto, non la disponibilità futura dei siti. Nuovi download rifiutati dopo la scadenza dell'indice; adattatori già installati utilizzabili offline. Nessuna chiave privata, credenziale o cookie viene pubblicato. Sorgenti degli adattatori e LICENSE sono inclusi intenzionalmente.
 
-Le future patch devono essere firmate e compatibili con il runtime della piattaforma. La firma dell’APK Android e quella del WGT Samsung sono distinte dalla firma degli aggiornamenti dei risolutori. Le chiavi private restano fuori da questa repository e dall’app.
-
-I pacchetti vengono attivati alla riproduzione successiva, senza interrompere un video in corso; l’app deve conservare una versione precedente per il ripristino. Queste sono regole del sistema da implementare, non funzionalità già attive.
+Vedi [PUBLISHING.md](PUBLISHING.md) per la procedura di pubblicazione.

@@ -1,25 +1,12 @@
-# Pubblicazione degli aggiornamenti
+# Pubblicazione del canale
 
-Questa repository è pubblica. Pubblicare soltanto file intenzionalmente distribuibili: niente sorgenti privati, token, cookie, dati utente o chiavi private. Un adattatore eseguibile distribuito come patch è comunque scaricabile e ispezionabile da chiunque; mantenere privata la repository di sviluppo non rende segreto il codice incluso nella patch.
+La repository privata DodoTV contiene scripts/build-adapter-update.cjs e scripts/publish-adapter-update.cjs. La chiave privata dedicata rimane esterna al sorgente e deve corrispondere alla chiave pubblica fissata nei client.
 
-## Prima di attivare il canale
+1. Validare i quattro adattatori e la compatibilità API 1 su entrambe le piattaforme.
+2. Generare il bundle JSON e l'indice con sequenza crescente, hash/dimensione, scadenza e firma separata RSA-SHA256 sui byte esatti dell'indice.
+3. Pubblicare prima il bundle e LICENSE; aggiornare indice e firma nello stesso commit. Non sovrascrivere bundle già distribuiti.
+4. Verificare lettura anonima, firma e attivazione al successivo avvio.
 
-1. Implementare e verificare il client Android/Tizen: formato del manifest, verifica della firma, compatibilità, limiti di dimensione e gestione degli errori.
-2. Configurare una chiave di firma per gli aggiornamenti; incorporare la chiave pubblica attendibile nell’app. La chiave privata deve rimanere nel sistema di pubblicazione. Un checksum da solo non dimostra la provenienza.
-3. Definire versioni monotone, scadenza dei metadati e protezione contro il riutilizzo di manifest vecchi. Prevedere la rotazione delle chiavi senza fidarsi di chiavi inviate da un manifest non ancora verificato.
-4. Abilitare l’indice soltanto quando almeno un pacchetto firmato è stato provato sul runtime supportato. L’indice iniziale enabled=false è preparatorio e non autorizza alcun aggiornamento.
+Il publisher CI privato richiede i secret DODOTV_UPDATE_PRIVATE_KEY e DODOTV_UPDATES_TOKEN; il secondo autorizza Contents write esclusivamente su questa repository. Questa sessione ha pubblicato il primo bundle attraverso la connessione GitHub autorizzata; non ha configurato questi secret. Finché mancanti, la CI salta la pubblicazione automatica dichiarandolo nel riepilogo.
 
-## Pubblicazione futura
-
-- Compilare e testare nel progetto privato, esportando soltanto i file di distribuzione.
-- Caricare una release con file immutabili identificati dalla versione: pacchetto, dimensione, SHA-256 e firma/metadati firmati.
-- Pubblicare per ultimo l’indice aggiornato, dopo aver verificato che tutti gli asset siano scaricabili senza login. Non inserire URL temporanei o link a release private.
-- Firmare i byte esatti dell’indice; il client deve verificare i byte prima di interpretare e applicare la configurazione. Specificare il formato crittografico nel protocollo definitivo, non inventarlo diversamente fra client e publisher.
-- Dichiarare piattaforma, versione minima/massima del runtime e API dell’adattatore. Android Node Mobile e servizio Tizen non sono runtime intercambiabili.
-- Scaricare in staging, verificare firma/hash/dimensione/compatibilità, attivare atomicamente a riproduzione terminata e mantenere la versione precedente. Il ripristino locale non deve autorizzare qualsiasi downgrade scaricato dalla rete.
-
-## Permessi del sistema di build
-
-Il GITHUB_TOKEN della repository privata non concede automaticamente accesso in scrittura a questa repository separata. Configurare una credenziale di pubblicazione dedicata con permessi limitati a questo canale, custodita nei secret della CI privata. Non inserirla nelle app, nei file pubblici o negli artifact.
-
-La distribuzione degli APK e dei WGT completi resta distinta dalle patch: Android può richiedere la conferma di installazione del sistema; un WGT richiede la firma Samsung e il metodo di installazione previsto dalla TV. Questo canale non elimina tali requisiti.
+Non committare chiavi private, token, cookie, keystore o certificati Samsung. Il token serve esclusivamente al publisher e non va incluso nelle app. Non modificare schema API, nomi dei quattro moduli o chiave pubblica senza aggiornare i client. Conservare GPLv3 e provenienza dei sorgenti.
