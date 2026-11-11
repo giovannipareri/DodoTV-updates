@@ -4,14 +4,14 @@
   "channel": "stable",
   "updaterApi": 1,
   "enabled": true,
-  "sequence": 1794355345,
-  "issuedAt": "2026-11-11T00:02:25.162Z",
-  "expiresAt": "2026-12-11T00:02:25.162Z",
+  "sequence": 1794383604,
+  "issuedAt": "2026-11-11T07:53:24.452Z",
+  "expiresAt": "2026-12-11T07:53:24.452Z",
   "apps": [],
   "adapters": [
     {
       "id": "dodo-http",
-      "version": "1794355345",
+      "version": "1794383604",
       "apiVersion": 1,
       "platforms": [
         "android",
@@ -20,7 +20,7 @@
       ],
       "minNodeMajor": 4,
       "maxNodeMajor": 24,
-      "url": "https://github.com/giovannipareri/DodoTV-updates/releases/download/adapters-1794355345/1794355345.json",
+      "url": "https://github.com/giovannipareri/DodoTV-updates/releases/download/adapters-1794383604/1794383604.json",
       "size": 43951,
       "sha256": "a7ec9baec55fc4739bd9bdbb2e080d0b606d3fa2135898027b8815b1475d6752"
     }
